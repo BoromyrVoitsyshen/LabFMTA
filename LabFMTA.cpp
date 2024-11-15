@@ -32,11 +32,8 @@ int main() {
         if (std::regex_match(line, match, pattern)) {
             int precipitation = std::stoi(match[6].str());
             if (precipitation != 0) {
-                outputFile << match[1].str() << " ; " << match[2].str() << " ; "
-                           << match[3].str() << " ; " << match[4].str() << " ; "
-                           << match[5].str() << " ; " << match[6].str() << " ; "
-                           << match[7].str() << " ; " << match[8].str() << " ; "
-                           << match[9].str() << " ; " << match[10].str() << "\n";
+                std::string updatedLine = std::regex_replace(line, std::regex(R"([;:?])"), ";");
+                outputFile << updatedLine << std::endl;
             }
         }
     }
